@@ -49,12 +49,12 @@ class App extends React.Component{
     return(
       <div className="App">
         <Input load={this.getWeather} />
-        {<Main city={city}
+        <Main city={city}
                tempetaure={tempetaure}
                description={description}
                windSpeed={windSpeed}
                time={time}
-        />}
+        />
       </div>
     )
   }
