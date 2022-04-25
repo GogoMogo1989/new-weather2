@@ -8,7 +8,10 @@ const Input = props => {
     return(
         <div className="container">
             <form onSubmit={load}>
-                <input className="form" name="city" autoComplete="off" placeholder="City" />
+                <input className="form" 
+                    name="city" 
+                    autoComplete="off" 
+                    placeholder="Város" />
             </form>
         </div>
     )
