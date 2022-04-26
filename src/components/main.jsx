@@ -8,7 +8,6 @@ const Weather = (props) => {
     const description = props.description
     const windSpeed = props.windSpeed
     const time = props.time
-    const background =props.background
 
     return(
         <div className="container">
