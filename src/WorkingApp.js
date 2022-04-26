@@ -1,20 +1,11 @@
 import './App.css';
 import Main from './components/main'
-import Input from './components/input'
+import Input from './components/WorkingInput'
 import React from 'react';
 import moment from 'moment';
-/* import Cities from 'cities.json'; */
 
 
 const apiKey='97ae44a28d09d602ff074a873467e1d1'
-
-
-/* const newCities = Cities.map(citiesName)
-
-function citiesName(value){
-    return value.name
-}
- */
 
 class App extends React.Component{
   constructor(){
@@ -23,7 +14,7 @@ class App extends React.Component{
       city: "",
       tempetaure: "",
       description: "",
-      windSpeed: ""
+      windSpeed: "",
     }   
 
   }
@@ -33,12 +24,12 @@ class App extends React.Component{
 
     event.preventDefault();
 
-    const cityName = event.target.elements.city.value
+    const city = event.target.elements.city.value
 
 
-    console.log(cityName)
+    console.log(city)
     
-    const weatherApiFetch = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`)
+    const weatherApiFetch = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&lang=hu`)
     const response = await weatherApiFetch.json()
 
     console.log(response)
@@ -50,6 +41,7 @@ class App extends React.Component{
         windSpeed: response.wind.speed
       })
 
+      
     
 
   }
@@ -62,15 +54,11 @@ class App extends React.Component{
       const windSpeed = this.state.windSpeed
       const time = moment().format('YYYY.MM.DD')
 
+      console.log(tempetaure)
+
       return(
         <div className="App">
-          <Input 
-                 suggestions={[
-                   "London", 
-                   "Budapest", 
-                   "Berlin"
-                  ]}
-                  load={this.getWeather}
+          <Input load={this.getWeather}
                   />
           <Main city={city}
                   tempetaure={tempetaure}

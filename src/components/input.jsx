@@ -1,7 +1,9 @@
 import { useState } from "react";
+/* import {useForm} from 'react-hook-form'; */
 import './input.css'
 
 const Input = ( { suggestions },props) => {
+
 
     const [filteredSuggestions, setFilteredSuggestions] = useState([]);
     const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
@@ -29,7 +31,7 @@ const Input = ( { suggestions },props) => {
         setShowSuggestions ( false ); };  
 
         const SuggestionsListComponent = () => {
-            return filteredSuggestions.length>3 ? (
+            return filteredSuggestions.length ? (
               <ul class="suggestions">
                 {filteredSuggestions.map((suggestion, index) => {
                   let className;
@@ -38,9 +40,9 @@ const Input = ( { suggestions },props) => {
                     className = "suggestion-active";
                   }
                   return (
-                    <li className={className} key={suggestion} onClick={onClick}>
+                    <ul className={className} key={suggestion} onClick={onClick} >
                       {suggestion}
-                    </li>
+                    </ul>
                   );
                 })}
               </ul>
@@ -56,7 +58,7 @@ const Input = ( { suggestions },props) => {
     return(
         <div className="container">
             <form onSubmit={load}>
-                <input className="form" 
+                <input className="form"
                     name="city" 
                     autoComplete="off" 
                     placeholder="Város"
