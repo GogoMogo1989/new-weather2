@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 
-const Autocomplete = ({ lang }) => {
+const Autocomplete = ({ lang }, props) => {
   const [searchtext, setSearchtext] = useState("");
   const [suggest, setSuggest] = useState([]);
   const [resfound, setResfound] = useState(true);
+
+  
 
   const handleChange = (e) => {
     let searchval = e.target.value;
@@ -39,8 +41,12 @@ const Autocomplete = ({ lang }) => {
       </ul>
     );
   };
+
+  const load = props.load
+
   return (
     <div className="searchcontainer">
+       <form onSubmit={load}>
       <input
         type="text"
         placeholder="Search.."
@@ -49,7 +55,10 @@ const Autocomplete = ({ lang }) => {
         onChange={handleChange}
       />
       {getSuggestions()}
+      </form>
     </div>
   );
+
+ 
 };
 export default Autocomplete;

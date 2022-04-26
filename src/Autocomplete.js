@@ -1,7 +1,7 @@
 import { useState } from "react";
-import './input.css'
 
-const Input = ( { suggestions },props) => {
+const AutoComplete = ({ suggestions }) => {
+
 
     const [filteredSuggestions, setFilteredSuggestions] = useState([]);
     const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
@@ -51,23 +51,16 @@ const Input = ( { suggestions },props) => {
             );
           };
 
-    const load = props.load
+          return (
+            <>
+              <input
+                type="text"
+                onChange={onChange}
+                value={input}
+              />
+              {showSuggestions && input && <SuggestionsListComponent />}
+            </>
+          );
+        };
 
-    return(
-        <div className="container">
-            <form onSubmit={load}>
-                <input className="form" 
-                    name="city" 
-                    autoComplete="off" 
-                    placeholder="Város"
-                    type="text"
-                    onChange={onChange}
-                    value={input}
-                  />
-                  {showSuggestions && input && <SuggestionsListComponent />}
-            </form>
-        </div>
-    )
-}
-
-export default Input
+export default AutoComplete;

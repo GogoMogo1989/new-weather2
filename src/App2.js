@@ -1,33 +1,23 @@
-import React from 'react';
-import Search from './components/search';
-import Cities from './cities/cities'
-/* import useFetch from './useFetch' */
+import React from "react";
+import Autocomplete from "./Autocomplete";
+import Cities from 'cities.json';
 
-const b = Cities.map(futya)
+const newCities = Cities.map(kutya)
 
-function futya(c){
- return c
+function kutya(value){
+    return value.name
 }
 
-console.log(b)
-
-function App2(){
-
-    let PropLang = [
-        "cica",
-        "macska",
-        "kutya",
-        "egér",
-        "tehén"
-    ]
-  
-
-
-    return(
-        <div className="container">
-            <Search lang={PropLang}/>
-        </div>
-    )
-}
+const App2 = () => {
+  return (
+    <div>
+      <h1>React Autocomplete Demo</h1>
+      <h2>Start typing and experience React autocomplete!</h2>
+      <Autocomplete
+        suggestions={newCities}
+      />
+    </div>
+  );
+};
 
 export default App2;
