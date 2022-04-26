@@ -64,7 +64,7 @@ class App extends React.Component{
       return(
         <div className="App">
           <Input load={this.getWeather}
-          suggestions={newCities}
+                 suggestions={newCities}
                   />
           <Main city={city}
                   tempetaure={tempetaure}

@@ -29,7 +29,7 @@ const Input = ( { suggestions },props) => {
         setShowSuggestions ( false ); };  
 
         const SuggestionsListComponent = () => {
-            return filteredSuggestions.length ? (
+            return filteredSuggestions.length>3 ? (
               <ul class="suggestions">
                 {filteredSuggestions.map((suggestion, index) => {
                   let className;
