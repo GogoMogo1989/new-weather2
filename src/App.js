@@ -3,18 +3,18 @@ import Main from './components/main'
 import Input from './components/input'
 import React from 'react';
 import moment from 'moment';
-/* import Cities from 'cities.json'; */
+import Cities from 'cities.json';
 
 
 const apiKey='97ae44a28d09d602ff074a873467e1d1'
 
 
-/* const newCities = Cities.map(citiesName)
+const newCities = Cities.map(citiesName)
 
 function citiesName(value){
     return value.name
 }
- */
+
 
 class App extends React.Component{
   constructor(){
@@ -28,30 +28,33 @@ class App extends React.Component{
 
   }
 
-  getWeather = async(event) => {
-
-
-    event.preventDefault();
-
-    const cityName = event.target.elements.city.value
-
-
-    console.log(cityName)
-    
-    const weatherApiFetch = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`)
-    const response = await weatherApiFetch.json()
-
-    console.log(response)
-
-    this.setState({
+  fetchCity = (city) => {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`)
+    .then((response) => response.json())
+    .then(response => {
+      this.setState({
         city: response.name,
         tempetaure: Math.floor(response.main.temp-273.15),
         description: response.weather[0].description,
         windSpeed: response.wind.speed
       })
+    });
 
-    
 
+}
+
+  getWeather = async(event) => {
+
+
+    event.preventDefault();
+
+    let city = event.target.elements.city.value
+
+    console.log(city)
+
+    if(city !== undefined){
+      this.fetchCity(city)
+    }
   }
 
     render(){
@@ -65,11 +68,7 @@ class App extends React.Component{
       return(
         <div className="App">
           <Input 
-                 suggestions={[
-                   "London", 
-                   "Budapest", 
-                   "Berlin"
-                  ]}
+                 suggestions={newCities}
                   load={this.getWeather}
                   />
           <Main city={city}

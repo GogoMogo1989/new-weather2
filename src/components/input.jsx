@@ -2,13 +2,23 @@ import { useState } from "react";
 /* import {useForm} from 'react-hook-form'; */
 import './input.css'
 
-const Input = ( { suggestions },props) => {
+
+
+
+const Input = props => {
+
+
+
+console.log(props)
+  
 
 
     const [filteredSuggestions, setFilteredSuggestions] = useState([]);
     const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [input, setInput] = useState("");
+    const load = props.load;
+    const suggestions= props.suggestions
 
     const onChange = (e) => {
         const userInput = e.target.value;
@@ -28,10 +38,12 @@ const Input = ( { suggestions },props) => {
         setFilteredSuggestions ([]); 
         setInput ( e.target.innerText ); 
         setActiveSuggestionIndex ( 0 ); 
-        setShowSuggestions ( false ); };  
+        setShowSuggestions ( false );
+        load(e)}
+        
 
         const SuggestionsListComponent = () => {
-            return filteredSuggestions.length ? (
+            return filteredSuggestions.length  ? (
               <ul class="suggestions">
                 {filteredSuggestions.map((suggestion, index) => {
                   let className;
@@ -52,8 +64,9 @@ const Input = ( { suggestions },props) => {
               </div>
             );
           };
+          
 
-    const load = props.load
+   
 
     return(
         <div className="container">
